@@ -16,7 +16,7 @@ where are?
 6) What is the price difference between the different types of accommodation?
 7) What are the most expensive regions to stay?
 
-Finally, using data both from Airbnb and Zap Imoveis, would it be possible to create an analytical model to choose the best neighborhood for buying a property, considering the financial return from it's Airbnb revenue?
+Finally, using data both from Airbnb and Zap Imoveis, would it be possible to create an analytical model to choose the best neighborhood for buying a property, considering the financial return from it's estimated Airbnb revenue?
 
 ## Architecture
 
@@ -32,5 +32,9 @@ Airbyte, Airflow, and Metabase were chosen due to their open source nature so we
 
 **2 - Real Time Layer:** This layer is not part of this project scope of development but a suggested next step for further improvement of the project. As Airbnb data from insideairbnb.com is not updated often, the real state data from Zap Imoveis would be the only dataset to be frequently updated. The same script used in the batch layer is used to scrap data from ZapImoveis and land it into an S3 bucket. Airbyte therefore ingests this data into Kafka, and Kafka-Connector is used as a consumer to drive data to Redshift.
 
-**3 - Machine Learning Layer:** Dataiku was chosen to create and deploy the a model that can choose the best neighborhood for buying a property, considering the financial return from it's Airbnb revenue. Dataiku was chosen due to the fact it provides pre-built algorithms, easy to use user interface, and possibility to be used in open source mode for this project.
+**3 - Machine Learning Layer:** Dataiku was chosen to create and deploy the a model that can choose the best neighborhood for buying a property, considering the financial return from it's estimated Airbnb revenue. Dataiku was chosen due to the fact it provides pre-built algorithms, easy to use user interface, and possibility to be used in open source mode for this project.
+
+## Instructions
+
+First of all, run the Scrapper - ZapScrapper (PyPi ZapImoveis Scrapper library) or the Scrapper - BeautifulSoup notebook (ustom code create using BS4 directly) to get data from Zap Imoveis. The former is easier to use, but the later is more likely to run to scrape a higher number of pages given recent changes in the ZapImoveis website.
 

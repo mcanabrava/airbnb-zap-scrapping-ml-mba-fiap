@@ -36,5 +36,11 @@ Airbyte, Airflow, and Metabase were chosen due to their open source nature so we
 
 ## Instructions
 
-First of all, run the Scrapper - ZapScrapper (PyPi ZapImoveis Scrapper library) or the Scrapper - BeautifulSoup notebook (ustom code create using BS4 directly) to get data from Zap Imoveis. The former is easier to use, but the later is more likely to run to scrape a higher number of pages given recent changes in the ZapImoveis website.
+1. First of all, run the Scrapper - ZapScrapper (PyPi ZapImoveis Scrapper library) or the Scrapper - BeautifulSoup notebook (ustom code create using BS4 directly) to get data from Zap Imoveis. The former is easier to use, but the later is more likely to run to scrape a higher number of pages given recent changes in the ZapImoveis website.
 
+2. After the data is scrapped succesfully, run the Setup notebook to create the infrastructure resources in AWS and upload the dataset files to S3 buckets.
+
+3. 
+
+
+X. Run cleanup.py to destroy AWS infrastructure and clean up the account.

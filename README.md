@@ -38,9 +38,14 @@ Airbyte, Airflow, and Metabase were chosen due to their open source nature so we
 
 1. First of all, run the Scrapper - ZapScrapper (PyPi ZapImoveis Scrapper library) or the Scrapper - BeautifulSoup notebook (ustom code create using BS4 directly) to get data from Zap Imoveis. The former is easier to use, but the later is more likely to run to scrape a higher number of pages given recent changes in the ZapImoveis website.
 
-2. After the data is scrapped succesfully, run the Setup notebook to create the infrastructure resources in AWS and upload the dataset files to S3 buckets.
+2. Create a user with Administrator access inside your AWS IAM panel and generate the key and secret to fill the aws_template.cfg file. The original aws.cfg file used in this project is not available in the repository as it's being filtered by git ignore.
 
-3. 
+3. Run the Setup notebook to create the infrastructure resources in AWS and upload the dataset files to S3 buckets using the aws.cfg data. 
+
+4. Create an account at Airbyte and set up one connection for each bucket, as per the print screens below. Alternatively, it is possible to run it using a script (not available in this project) and the airbyte modules.
+
+**4.1 Setting up the source**
+![Source](imgs/airbyte_1.png)
 
 
 X. Run cleanup.py to destroy AWS infrastructure and clean up the account.

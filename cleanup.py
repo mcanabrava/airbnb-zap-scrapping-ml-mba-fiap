@@ -2,7 +2,7 @@ import boto3
 import configparser
 
 config = configparser.ConfigParser()
-config.read_file(open('dwh.cfg'))
+config.read_file(open('aws.cfg'))
 
 def main():
     """

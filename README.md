@@ -1,22 +1,9 @@
 # airbnb-zap-scrapping-ml-mba-fiap
 This repository contains the solution for the FIAP - MBA Data Engineering Sprint 4 Challenge.
 
-The 8ABDO - Fase 4 - Solution Sprint.pdf contains the original challenge file with detailed instructions. To summarize, the project goal is to create a Modern Data Stack Platform that uses scrapped data from Airbnb and Zap Imoveis (a Brazilian Real State marketplace) to generate insight regarding the Real State market in the city of Rio de Janeiro.
+The 8ABDO - Fase 4 - Solution Sprint.pdf contains the original challenge file with detailed instructions. To summarize, the project goal is to create a Modern Data Stack Platform that uses scrapped data from Airbnb and Zap Imoveis (a Brazilian Real State marketplace) to generate insights regarding the Real State market in the city of Rio de Janeiro.
 
-Some possible questions to explore about the data available for Airbnb,
-in any neighborhood or in the whole city, are:
-
-1) How many accommodations are there in a neighborhood and where are they located?
-2) How many houses and apartments are being rented frequently
-for tourists rather than long-term residents?
-3) How much do hosts earn from renting to tourists?
-4) Which hosts are running a business with multiple listings and
-where are they?
-5) What type of accommodation is most common on Airbnb in a location?
-6) What is the price difference between the different types of accommodation?
-7) What are the most expensive regions to stay in?
-
-Finally, using data both from Airbnb and Zap Imoveis, would it be possible to create an analytical model to choose the best neighborhood for buying a property, considering the financial return from its estimated Airbnb revenue?
+In addition to data exploration, this project also aims to create an analytical model to choose the best neighborhood for buying a property, considering the financial return from its estimated Airbnb revenue.
 
 ## Architecture
 
@@ -42,10 +29,78 @@ Airbyte, Airflow, and Metabase were chosen due to their open-source nature so we
 
 3. Run the Setup notebook to create the infrastructure resources in AWS and upload the dataset files to S3 buckets using the aws.cfg data. 
 
-4. Create an account at Airbyte and set up one connection for each bucket, as per the print screens below. Alternatively, it is possible to run it using a script (not available in this project) and the Airbyte modules.
+4. Update bucket access from private to public by adding a bucket policy and/or ACLs:
 
-**4.1 Setting up the source**
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::zap-data-landing-fiap/*"
+            ]
+        }
+    ]
+}
+```
+
+
+5. Create an account at Airbyte and set up one connection for each bucket, as per the print screens below. Alternatively, it is possible to run it using a script (not available in this project) and the Airbyte modules.
+
+**5.1 Setting up the source**
 ![Source](imgs/airbyte_1.png)
+
+**5.2 Sync completed**
+![Synced](imgs/airbyte_2.png)
+
+**5.3 Data inside Redshift**
+
+You can verify that the data has landed correctly inside your redshift by connecting to the database. 
+
+Three tables should have been created, one that represent the CSV columns and 2 that are related to the Airbyte sync process. 
+
+![Tables](imgs/redshift_1.png)
+
+The results of the query can be seen in the image below:
+
+![Query](imgs/redshift_2.png)
+
+Now, it is necessary to repeat the process to land the data from the other bucket. the ETL is likely to take around an hour to run given the ammount of data being loaded.
+
+6. Finally, with all the data inside Redshift, it is now possible to work on data modelling to answer the questions below.
+
+a) How many accommodations are there in a neighborhood and where are they located?
+
+![q1](imgs/q1.png)
+
+b) How many houses and apartments are frequently being rented to tourists and not for long-term residents?
+
+![q2](imgs/q2.png)
+
+c) How much do hosts earn from renting to tourists?
+
+![q3](imgs/q3.png)
+
+d) Which hosts are managing a business with multiple listings and where are they located?
+
+![q4](imgs/q4.png)
+
+e) What type of accommodation is most common on Airbnb in a specific location?
+
+![q5](imgs/q5.png)
+
+f) What is the price difference between different types of accommodations?
+
+![q6](imgs/q6.png)
+
+g) What are the most expensive regions to stay in?
+
+![q7](imgs/q7.png)
 
 
 X. Run cleanup.py to destroy AWS infrastructure and clean up the account.

@@ -1,22 +1,9 @@
 # airbnb-zap-scrapping-ml-mba-fiap
 This repository contains the solution for the FIAP - MBA Data Engineering Sprint 4 Challenge.
 
-The 8ABDO - Fase 4 - Solution Sprint.pdf contains the original challenge file with detailed instructions. To summarize, the project goal is to create a Modern Data Stack Platform that uses scrapped data from Airbnb and Zap Imoveis (a Brazilian Real State marketplace) to generate insight regarding the Real State market in the city of Rio de Janeiro.
+The 8ABDO - Fase 4 - Solution Sprint.pdf contains the original challenge file with detailed instructions. To summarize, the project goal is to create a Modern Data Stack Platform that uses scrapped data from Airbnb and Zap Imoveis (a Brazilian Real State marketplace) to generate insights regarding the Real State market in the city of Rio de Janeiro.
 
-Some possible questions to explore about the data available for Airbnb,
-in any neighborhood or in the whole city, are:
-
-1) How many accommodations are there in a neighborhood and where are they located?
-2) How many houses and apartments are being rented frequently
-for tourists rather than long-term residents?
-3) How much do hosts earn from renting to tourists?
-4) Which hosts are running a business with multiple listings and
-where are they?
-5) What type of accommodation is most common on Airbnb in a location?
-6) What is the price difference between the different types of accommodation?
-7) What are the most expensive regions to stay in?
-
-Finally, using data both from Airbnb and Zap Imoveis, would it be possible to create an analytical model to choose the best neighborhood for buying a property, considering the financial return from its estimated Airbnb revenue?
+In addition to data exploration, this project also aims to create an analytical model to choose the best neighborhood for buying a property, considering the financial return from its estimated Airbnb revenue.
 
 ## Architecture
 
@@ -73,13 +60,13 @@ Airbyte, Airflow, and Metabase were chosen due to their open-source nature so we
 
 **5.3 Data inside Redshift**
 
-You can verify that the data has landed correctly inside your redshift by connecting to the database created with the credentials use to create it in the aws.cfg file. 
+You can verify that the data has landed correctly inside your redshift by connecting to the database. 
 
 Three tables should have been created, one that represent the CSV columns and 2 that are related to the Airbyte sync process. 
 
 ![Tables](imgs/redshift_1.png)
 
-The results of the query can be seen in the image below.
+The results of the query can be seen in the image below:
 
 ![Query](imgs/redshift_2.png)
 

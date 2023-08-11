@@ -1,12 +1,1 @@
-my_redshift:  # Profile name
-  target: prod  # Target environment (can be dev, prod, etc.)
-  outputs:
-    prod:  # Name of the target environment
-      type: redshift  # Type of the database or data warehouse
-      host: dwhcluster.chymkrrlegqj.us-east-1.redshift.amazonaws.com
-      user: dwhuser
-      password: dwhUser123X
-      port: 5439  # Replace with your Redshift port
-      dbname: dwhdatabase
-      schema: public  # Replace with the default schema you're using
-      threads: 4  # Optional: Number of threads for concurrent connections
+

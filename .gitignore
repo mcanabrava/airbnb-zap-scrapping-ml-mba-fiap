@@ -1,7 +1,9 @@
 dataset/airbnb/calendar.csv
 aws.cfg
+create_tables.sql
 # Default .gitignore content added by dbt Cloud
 target/
 dbt_packages/
 logs/
+profile.yml
 # end dbt Cloud content

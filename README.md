@@ -27,7 +27,7 @@ Airbyte, Airflow, and Metabase were chosen due to their open-source nature so we
 
 2. Create a user with Administrator access inside your AWS IAM panel and generate the key and secret to fill the aws_template.cfg file. The original aws.cfg file used in this project is not available in the repository as it's being filtered by git ignore.
 
-3. Run the Setup notebook to create the infrastructure resources in AWS and upload the dataset files to S3 buckets using the aws.cfg data. 
+3. Run the "2. Setup" notebook to create the infrastructure resources in AWS and upload the dataset files to S3 buckets using the aws.cfg data. Depending on the ETL tool of choice, might be worth it to perform basic cleaning in some CSV columns such as removing '$' and ',' characters from numeric values before uploading them to S3. Some examples can be found in the notebook "3. Exploration".
 
 4. Update bucket access from private to public by adding a bucket policy and/or ACLs:
 
@@ -72,7 +72,7 @@ The results of the query can be seen in the image below:
 
 Now, it is necessary to repeat the process to land the data from the other bucket. the ETL is likely to take around an hour to run given the ammount of data being loaded.
 
-6. Finally, with all the data inside Redshift, it is now possible to work on data modelling to answer the questions below.
+6. Finally, with all the data inside Redshift, it is now possible to work on data modelling with DBT to answer the proposed questions below.
 
 a) How many accommodations are there in a neighborhood and where are they located?
 

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+    - name: calendar
+    - name: listing_samples
+    - name: listings
+    - name: review_samples
+    - name: s3_to_rs_zap

@@ -1,3 +1,4 @@
--- dbt model: zap_data.sql
+-- dbt model: s3_to_rs_zap.sql
 select *
-from {{ ref('public.s3_to_rs_zap') }} as zap_data;
+from
+public.s3_to_rs_zap as zap_data

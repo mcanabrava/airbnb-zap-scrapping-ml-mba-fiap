@@ -1,0 +1,4 @@
+SELECT
+    property_tipe,
+    room_type
+FROM listings;

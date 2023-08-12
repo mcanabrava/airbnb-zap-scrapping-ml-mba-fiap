@@ -1,3 +1,2 @@
 -- dbt model: calendar.sql
-select *
-from {{ ref('public.calendar') }};
+select * from public.calendar

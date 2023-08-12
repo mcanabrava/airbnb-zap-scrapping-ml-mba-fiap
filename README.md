@@ -72,33 +72,65 @@ The results of the query can be seen in the image below:
 
 Now, it is necessary to repeat the process to land the data from the other bucket. the ETL is likely to take around an hour to run given the ammount of data being loaded.
 
-6. Finally, with all the data inside Redshift, it is now possible to work on data modelling with DBT to answer the proposed questions below.
+6. With all the data inside Redshift, it is now possible to work on data modelling with DBT. For this, it is necessary to set-up a DBT project and create models to benefit from the DBT functionalities. One of these is to referentiate the redshift tables as sources instead of using raw SQL to create the views in DBT, making the code more modular and easy to adapt in the future.
 
-a) How many accommodations are there in a neighborhood and where are they located?
+![Query](imgs/dbt_config.png)
+
+7. Finally, it is possible to answer the proposed questions below. The queries for them are located inside the DBT analyses folder referenced by the letters of the questions.
+
+**a) How many accommodations are there in a neighborhood and where are they located?**
+
+There are 371 different neighbourhood values - including the null values, and Copacabana, Barra da Tijuca, and Ipanema lead the ranking.
 
 ![q1](imgs/q1.png)
 
-b) How many houses and apartments are frequently being rented to tourists and not for long-term residents?
+**b) How many houses and apartments are frequently being rented to tourists and not for long-term residents?**
+
+The great majority of the listings are for super short term rentals, with over 90% of the properties being available for rental with the number of minimum nights between 1-5 and almost 99% available for less than 30 nights.
 
 ![q2](imgs/q2.png)
 
-c) How much do hosts earn from renting to tourists?
+**c) How much do hosts earn from renting to tourists?**
 
-![q3](imgs/q3.png)
+Hosts earnings can vary based on multiple factors. However, considering the following assumptions:
 
-d) Which hosts are managing a business with multiple listings and where are they located?
+- median price of $350/night/person
+- average number of reviews/month of 1.01
+- average "acommodates" of 4, but likely to fill only half of that
+- trend previous identified of short stays pointing to weekend stays (2 days) 
+- review ratio of 25% (1 out of 4 people that rent an airbnb leave a review)
 
-![q4](imgs/q4.png)
+We could calculate the average monthly income of a host by:
+- Calculating the average rental: 350$ x 2 people x 2 days = $ 1.400
+- Calculating the number of rentals/month: 1/0,25 x $ 3.924 = ~ 6.400
 
-e) What type of accommodation is most common on Airbnb in a specific location?
+This number seems feasible, but can drastically vary based on the assumptions above and specific airbnb variables.
+
+**d) Which hosts are managing a business with multiple listings and where are they located?**
+
+Almost 80% of the hosts have a single listing, and only 5% have more than 3 listings. 
+
+![q4](imgs/q41.png)
+
+Investigating the hosts with highest number of listings, it is possible to identify that all of them concentrate properties in the same or few neighbourhoods inside noble city areas. 
+
+![q4](imgs/q42.png)
+
+**e) What type of accommodation is most common on Airbnb in a specific location?**
+
+For Copacabana, entire rental unit is by far the most common property type, followed by private room in rental unit.
 
 ![q5](imgs/q5.png)
 
-f) What is the price difference between different types of accommodations?
+**f) What is the price difference between different types of accommodations?**
+
+As it can be observed in the image below, for the neighbourhood of Copacabana there is a high variation between the price of different types of accommodations. Going from $53 in a "Shared room in shipping container" and $78 in a "Shared room in hostel" to $6.250 for a boat. Entire rental unit, the most common property type has an average price of $1.081. 
 
 ![q6](imgs/q6.png)
 
-g) What are the most expensive regions to stay in?
+**g) What are the most expensive regions to stay in?**
+
+Using the median price instead of average to avoid outliers and filtering for neighbourhoods with more than 10 listings, Joá is by far the most expensive region followed by São Conrado, Alto da Boa Vista, Lagoa and Leblon.
 
 ![q7](imgs/q7.png)
 
